@@ -15,7 +15,6 @@ const orderSchema = new mongoose.Schema({
         ref: "product"
     },
     product_details: {
-        _id: String,
         name: String,
         image: Array
     },
@@ -33,7 +32,7 @@ const orderSchema = new mongoose.Schema({
     },
     subTotalAmt: {
         type: Number,
-        getDefaultAutoSelectFamilyAttemdefault: 0
+        default: 0
     },
     totalAmt: {
         type: Number,

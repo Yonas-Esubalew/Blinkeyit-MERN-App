@@ -8,6 +8,7 @@ dotenv.config();
 import cookieParser from "cookie-parser";
 import morgan from "morgan";
 import helmet from "helmet";
+import userRouter from "./route/user.route.js";
 
 
 const app = express();
@@ -35,6 +36,9 @@ app.get("/", (req, res)=>{
 
 }
 )
+
+app.use("api/user", userRouter)
+
 
 const PORT = 8800 || process.env.PORT;
 

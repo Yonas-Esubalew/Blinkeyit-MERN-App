@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { type } from "os";
 
 const userSchema = new mongoose.Schema({
     name: {
@@ -30,7 +31,7 @@ const userSchema = new mongoose.Schema({
         default: false
     },
     last_login_date: {
-        typr: Date,
+        type: Date,
         default: ""
     },
     status : {
@@ -40,19 +41,19 @@ const userSchema = new mongoose.Schema({
     },
     address_details: [
         {
-            tpye: mongoose.Schema.ObjectId,
+            type: mongoose.Schema.ObjectId,
             ref: "address"
         }
     ],
     shoping_cart: [
         {
-            tpye: mongoose.Schema.ObjectId,
+            type: mongoose.Schema.ObjectId,
             ref: "CartProduct"
         }
     ],
     orderHistory: [
         {
-            tpye: mongoose.Schema.ObjectId,
+            type: mongoose.Schema.ObjectId,
             ref: "order"
         }
     ],
