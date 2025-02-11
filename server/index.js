@@ -4,12 +4,10 @@ import dotenv from "dotenv";
 import connectDB from "./config/connectDB.js";
 dotenv.config();
 
-
 import cookieParser from "cookie-parser";
 import morgan from "morgan";
 import helmet from "helmet";
 import userRouter from "./route/user.route.js";
-
 
 const app = express();
 app.use(
@@ -28,23 +26,18 @@ app.use(
   })
 );
 
-app.get("/", (req, res)=>{
-    // server to client
-    res.json({
-        message: `Server is Running On ${PORT}`
-    })
+app.get("/", (req, res) => {
+  // server to client
+  res.json({
+    message: `Server is run Running On ${PORT}`,
+  });
+});
 
-}
-)
-
-app.use("api/user", userRouter)
-
+app.use("/api/user/", userRouter);
 
 const PORT = 8800 || process.env.PORT;
-
-connectDB().then(()=> {
-    app.listen(PORT, () => {
-        console.log("Server is Running", PORT);
-      });
-})
-
+connectDB().then(() => {
+  app.listen(PORT, () => {
+    console.log("Server is Running", PORT);
+  });
+});
