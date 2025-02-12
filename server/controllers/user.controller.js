@@ -102,12 +102,12 @@ export async function loginController(req, res) {
   try {
     const { email, password } = req.body;
 
-    if(!email || !password){
+    if (!email || !password) {
       return res.status(400).json({
         message: "Provide All Required Fileds!",
         error: true,
-        success: false
-      })
+        success: false,
+      });
     }
 
     const user = await UserModel.findOne({ email });
@@ -141,6 +141,9 @@ export async function loginController(req, res) {
     const accesstoken = await generatedAcessToken(user._id);
     const refreshtoken = await generatedRefreshToken(user._id);
 
+    const updateUser = await UserModel.findByIdAndUpdate(user?._id, {
+      last_login_date: new Date(),
+    });
     const cookiesOption = {
       httpOnly: true,
       secure: true,
@@ -169,32 +172,46 @@ export async function loginController(req, res) {
 }
 
 // Logout Controller
-export async function logoutController(req,res){
+export async function logoutController(req, res) {
   try {
+    const userid = req.userId; // middleware
     const cookiesOption = {
       httpOnly: true,
       secure: true,
-      sameSite: "None"
-    }
-    res.clearCookie("accessToken",cookiesOption)
-    res.clearCookie("refreshToken", cookiesOption)
+      sameSite: "None",
+    };
+    res.clearCookie("accessToken", cookiesOption);
+    res.clearCookie("refreshToken", cookiesOption);
 
-
-    const removeRefreshToken = await UserModel.findByIdAndUpdate(userid,{
-      refresh_token : ""
-    })
+    const removeRefreshToken = await UserModel.findByIdAndUpdate(userid, {
+      refresh_token: "",
+    });
 
     return res.json({
       message: "Logout Successfully!",
       error: false,
-      success: true
-    })
+      success: true,
+    });
   } catch (error) {
     return res.status(500).json({
       message: error.message || error,
       error: true,
-      sucess: false
+      sucess: false,
+    });
+  }
+}
 
-    })
+//  upload user Avatars
+
+export async function uploadAvatar(req, res) {
+  try {
+    const image = req.file;
+    console.log("image", image);
+  } catch (error) {
+    return res.status(500).json({
+      message: error.message || error,
+      error: ture,
+      success: false,
+    });
   }
 }
