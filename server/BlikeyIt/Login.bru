@@ -6,6 +6,17 @@ meta {
 
 post {
   url: http://localhost:8800/api/user/login
-  body: none
-  auth: none
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3YWRlNjg1ZWMzZDMxNGYzOTMwNzhjMSIsImlhdCI6MTczOTQ1NDA1MCwiZXhwIjoxNzM5NDcyMDUwfQ.XzsFXwIDQAOQH1ReBeqCEbkdnGXSW8ZxBKvoZnhfh1Y
+}
+
+body:json {
+  {
+    "email": "yonasatwork999@gmail.com",
+    "password": "yonas1234"
+  }
 }

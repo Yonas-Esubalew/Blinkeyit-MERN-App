@@ -13,7 +13,7 @@ const app = express();
 app.use(
   cors({
     credentials: true,
-    origin: process.env.FRONTEND_URL,
+    origin: process.env.FRONTEND_URL
   })
 );
 
@@ -25,6 +25,13 @@ app.use(
     crossOriginResourcePolicy: false,
   })
 );
+
+
+// Ensure cookies are set properly
+app.get("/check-cookies", (req, res) => {
+  console.log("Cookies Received:", req.cookies);
+  res.json({ cookies: req.cookies });
+});
 
 app.get("/", (req, res) => {
   // server to client

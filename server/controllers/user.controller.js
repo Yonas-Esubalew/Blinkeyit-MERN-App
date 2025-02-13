@@ -3,8 +3,9 @@ import UserModel from "../models/user.model.js";
 import sendEmail from "../config/sendEmail.js";
 import verifyEmailTemplate from "../utils/verifyEmailTemplate.js";
 import { error } from "console";
-import generatedAcessToken from "../utils/generateAccessToken.js";
+import generatedAccessToken from "../utils/generateAccessToken.js";
 import generatedRefreshToken from "../utils/generateRefreshToken.js";
+import uploadImageCloudinary from "../utils/uploadImageCloudinary.js";
 
 export async function registerUserController(req, res) {
   try {
@@ -138,7 +139,7 @@ export async function loginController(req, res) {
       });
     }
 
-    const accesstoken = await generatedAcessToken(user._id);
+    const accesstoken = await generatedAccessToken(user._id);
     const refreshtoken = await generatedRefreshToken(user._id);
 
     const updateUser = await UserModel.findByIdAndUpdate(user?._id, {
@@ -150,7 +151,7 @@ export async function loginController(req, res) {
       sameSite: "None",
     };
 
-    res.cookie("accesstoken", accesstoken, cookiesOption);
+    res.cookie("accessToken", accesstoken, cookiesOption);
     res.cookie("refreshToken", refreshtoken, cookiesOption);
 
     return res.json({
@@ -172,46 +173,74 @@ export async function loginController(req, res) {
 }
 
 // Logout Controller
-export async function logoutController(req, res) {
+export async function logoutController(req,res){
   try {
-    const userid = req.userId; // middleware
-    const cookiesOption = {
+
+    const userid = req.userId //middleware
+     const cookiesOption = {
       httpOnly: true,
       secure: true,
-      sameSite: "None",
+      sameSite: "None"
     };
-    res.clearCookie("accessToken", cookiesOption);
-    res.clearCookie("refreshToken", cookiesOption);
+    res.clearCookie("accessToken", cookiesOption)
+    res.clearCookie("refreshToken", cookiesOption)
 
-    const removeRefreshToken = await UserModel.findByIdAndUpdate(userid, {
-      refresh_token: "",
-    });
+    const removeRefreshToken = await UserModel.findByIdAndUpdate(userid,{
+      refresh_token : ""
+  })
 
     return res.json({
-      message: "Logout Successfully!",
+      message: "Logout Succesfully!",
       error: false,
-      success: true,
-    });
+      success: true
+    })
+
+  } catch (error) {
+    res.status(500).json({
+      message: message.error || error,
+      error: true,
+      success: false
+    })
+  }
+}
+//  upload user Avatars
+export async function uploadAvatar(req, res) {
+  try {
+
+    const userid = req.userId
+    const image = req.file;
+    const upload = await uploadImageCloudinary(image)
+
+    const updateUser = await UserModel.findByIdAndUpdate(userid,{
+      avatar : upload.url
+    })
+
+    return  res.json({
+      message: "upload profile",
+      data: {
+        _id: userId,
+        avatar: upload.url
+      }
+    })
   } catch (error) {
     return res.status(500).json({
       message: error.message || error,
       error: true,
-      sucess: false,
+      success: false,
     });
   }
 }
 
-//  upload user Avatars
+// update user details
 
-export async function uploadAvatar(req, res) {
+export async function updataUserDetails(req,res){
   try {
-    const image = req.file;
-    console.log("image", image);
+    
   } catch (error) {
-    return res.status(500).json({
+    res.status(500).json({
       message: error.message || error,
-      error: ture,
-      success: false,
-    });
+      error: true,
+      success: false
+    })
   }
 }

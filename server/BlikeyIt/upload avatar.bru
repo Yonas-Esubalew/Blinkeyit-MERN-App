@@ -1,0 +1,26 @@
+meta {
+  name: upload avatar
+  type: http
+  seq: 8
+}
+
+post {
+  url: http://localhost:8800/api/user/login
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3YWRmNzE5NzU2MDNhNTRkNTlmNmE4NSIsImlhdCI6MTczOTQ1NjE5NiwiZXhwIjoxNzM5NDc0MTk2fQ.z3lN5B9oTkYO7dJeRdElBdleiZ1Y1yvMb4SUfV39CfU
+}
+
+body:json {
+  {
+    "email": "yonasatwork999@gmail.com",
+    "password": "yonas1234"
+  }
+}
+
+body:multipart-form {
+  avatar: @file(C:\Users\Yonny\Pictures\uy.jpg)
+}
