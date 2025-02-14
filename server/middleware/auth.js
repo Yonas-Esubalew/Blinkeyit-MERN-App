@@ -1,7 +1,6 @@
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv"
 dotenv.config()
-
 const auth = async (req, res, next) => {
     try {
         let token = req.cookies?.accessToken || req.headers?.authorization?.split(" ")[1];
@@ -42,5 +41,4 @@ const auth = async (req, res, next) => {
         });
     }
 };
-
 export default auth;

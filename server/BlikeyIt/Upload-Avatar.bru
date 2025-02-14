@@ -1,0 +1,19 @@
+meta {
+  name: Upload-Avatar
+  type: http
+  seq: 5
+}
+
+put {
+  url: http://localhost:8800/api/user/upload-avatar
+  body: multipartForm
+  auth: bearer
+}
+
+auth:bearer {
+  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3YWY0YWQ0ZDBjMTZiZWY0NzczYjlhMSIsImlhdCI6MTczOTU0MjA0MywiZXhwIjoxNzM5NTYwMDQzfQ.zPwJhgAXD8xLiHgeQai3zvLZzZ50GiLTNRQXEptEeBg
+}
+
+body:multipart-form {
+  avatar: @file(C:\Users\Yonny\Pictures\Camera Roll\960x0.jpg)
+}

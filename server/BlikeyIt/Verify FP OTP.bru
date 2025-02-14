@@ -1,0 +1,22 @@
+meta {
+  name: Verify FP OTP
+  type: http
+  seq: 8
+}
+
+put {
+  url: http://localhost:8800/api/user/verify-forgot-password-otp
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3YWY0YWQ0ZDBjMTZiZWY0NzczYjlhMSIsImlhdCI6MTczOTU0MjA0MywiZXhwIjoxNzM5NTYwMDQzfQ.zPwJhgAXD8xLiHgeQai3zvLZzZ50GiLTNRQXEptEeBg
+}
+
+body:json {
+  {
+     "email": "yonasbe999@gmail.com",
+    "otp": "135266"
+  }
+}

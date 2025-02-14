@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-
 const subCactegorySchema = new mongoose.Schema({
     name : {
         type: String,
@@ -19,7 +18,5 @@ const subCactegorySchema = new mongoose.Schema({
     timestamps : true
 
 })
-
 const SubCategoryModel = mongoose.model("subCategory", subCactegorySchema)
-
 export default SubCategoryModel

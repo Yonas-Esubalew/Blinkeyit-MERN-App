@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-
 const addressSchema = new mongoose.Schema({
     address_line: {
         type: String,
@@ -32,7 +31,5 @@ const addressSchema = new mongoose.Schema({
 },{
     timestamps : true
 })
-
 const AddressModel = mongoose.model("address", addressSchema)
-
 export default AddressModel

@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-
 const cartProductSchema = new mongoose.Schema({
     productId: {
         type: mongoose.Schema.ObjectId,
@@ -16,7 +15,5 @@ const cartProductSchema = new mongoose.Schema({
 },{
     timestamps: true
 })
-
 const CartProductModel = mongoose.model("cartPrduct", cartProductSchema)
-
 export default  CartProductModel
