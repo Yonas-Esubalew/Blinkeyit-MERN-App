@@ -1,10 +1,10 @@
 import React from "react";
 import logo from "../assets/logo.png";
 import Search from "./Search";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaUser } from "react-icons/fa";
 import useMobile from "../hooks/useMobile";
-import { FaCartShopping } from "react-icons/fa6"
+import { BsCart4 } from "react-icons/bs";
 
 function Header() {
   const [isMobile] = useMobile();
@@ -12,11 +12,17 @@ function Header() {
   const location = useLocation();
   const isSearchPage = location.pathname === "/search";
 
+  const navigate = useNavigate();
+
+  const redirectToLoginPage = () => {
+    navigate("/login");
+  };
+
   console.log("isSearchPage", isSearchPage);
   console.log("location", location);
   console.log("ismobile", isMobile);
   return (
-    <header className="h-24 lg:h-20 lg:shadow-md sticky top-0 flex flex-col justify-center gap-2">
+    <header className="h-24 lg:h-20 lg:shadow-md sticky top-0 flex flex-col justify-center gap-2 bg-white">
       {!(isSearchPage && isMobile) && (
         <div className="container lg:h-full flex mx-auto items-center  px-2 justify-between">
           {/* logo */}
@@ -56,15 +62,14 @@ function Header() {
             </button>
             {/* desktop version */}
             <div className="hidden lg:flex items-center gap-10">
-              <Link to={"/login"}>Login</Link>
-              <button className="flex items-center gap-2 bg-secondary-200 px-2 y-1 rounded">
+              <button onClick={redirectToLoginPage} >Login</button>
+              <button className="flex items-center gap-2 bg-se px-2 py-3  bg-green-800 hover:bg-green-700 text-white rounded">
                 {/* add to cart items */}
-                <div>
-                  <FaCartShopping size={28} />
+                <div className="animate-bounce">
+                  <BsCart4 size={26} />
                 </div>
-                <div>
-                  <p>1 items</p>
-                  <p>total price</p>
+                <div className="font-semibold">
+                  <p>My Cart</p>
                 </div>
               </button>
             </div>
