@@ -40,9 +40,9 @@ app.get("/", (req, res) => {
   });
 });
 
-app.use("/api/user/", userRouter);
+app.use("/api/user", userRouter);
 
-const PORT = 8800 || process.env.PORT;
+const PORT = process.env.PORT || 8080;
 connectDB().then(() => {
   app.listen(PORT, () => {
     console.log("Server is Running", PORT);

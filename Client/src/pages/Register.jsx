@@ -5,7 +5,7 @@ import toast from "react-hot-toast";
 import Axios from "../utils/Axios";
 import SummaryApi from "../common/summaryApi";
 import AxiosToastError from "../utils/AxiosToastError";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Register = () => {
   const [data, setData] = useState({
@@ -14,9 +14,10 @@ const Register = () => {
     password: "",
     confirmPassword: "",
   });
+
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const validValue = Object.values(data).every((el) => el);
   const handleChange = (e) => {
@@ -37,16 +38,32 @@ const Register = () => {
       toast.error("password and confirm password must be same!");
       return;
     }
-    
     try {
-        const response = await Axios({
-            ...SummaryApi.register,
-            data: data
-        })
+      const response = await Axios({
+        ...SummaryApi.register,
+        data: data,
+      });
+
+      if (response.data.error) {
+        toast.error(response.data.message);
+      }
+
+      if (response.data.success) {
+        toast.success(response.data.message);
+        setData({
+          name: "",
+          email: "",
+          password: "",
+          confirmPassword: "",
+        });
+        navigate("/login")
+      }
+    //   console.log("response", response);
     } catch (error) {
-        console.log("response",response)
+      AxiosToastError(error);
     }
   };
+
   return (
     <section className="w-full container mx-auto px-2">
       <div className="bg-white w-full my-4 max-w-lg mx-auto rounded p-7">
@@ -129,6 +146,7 @@ const Register = () => {
             Register
           </button>
         </form>
+        <p> Already have account?  <Link className="font-semibold text-green-700 hover:text-green-800" to={"/login"}>Login</Link></p>
       </div>
     </section>
   );

@@ -13,7 +13,6 @@ import jwt from "jsonwebtoken";
 export async function registerUserController(req, res) {
   try {
     const { name, email, password } = req.body;
-
     if (!name || !email || !password) {
       return res.status(400).json({
         message: "Provide All Required Fileds!",
@@ -44,7 +43,8 @@ export async function registerUserController(req, res) {
     const newUser = new UserModel(payload);
     const save = await newUser.save();
 
-    const VerifyEmailUrl = `${process.env.FRONTEND_URL}/verify-email?code=${save?._id}`;
+    const VerifyEmailUrl = `${process.env.FRONTEND_URL}/verify-email?code=${save?._id}`
+
     const verifyEmail = await sendEmail({
       sendTo: email,
       subject: "Verify Email from Blinkeyit",
@@ -298,7 +298,7 @@ export async function forgotPasswordController(req, res) {
     });
 
     return res.json({
-      message: "Check your Email",
+      message: "Please Check your Email",
       error: false,
       success: true,
     });
@@ -353,8 +353,12 @@ export async function verifyForgotPasswordOtp(req, res) {
 
     //if OTP is not Expired
     //OTP == user.forgot_password_otp
+    const updateUser = await UserModel.findByIdAndUpdate(user?._id,{
+      forgot_password_otp : "",
+      forgot_password_expiry : ""
+  })
     return res.json({
-      message: "Email Verification successfully!",
+      message: "Verify OTP Successfully!",
       error: false,
       success: true,
     });

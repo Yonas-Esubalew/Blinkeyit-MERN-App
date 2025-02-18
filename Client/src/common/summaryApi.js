@@ -1,10 +1,23 @@
-export const baseURL = "http://localhost:8800"
+export const baseURL = "http://localhost:3000";
 
 const SummaryApi = {
-    register : {
-        url: "/api/user/register",
-        method : "post"
+  register: {
+    url: "/api/user/register",
+    method: "post",
+  },
+  login : {
+    url : "/api/user/login",
+    method: "post"
+  },
+  forgot_password: {
+    url: "/api/user/forgot-password",
+    method: "put"
+  },
+    forgot_password_otp_verification : {
+        url : "verify-forgot-password-otp",
+        method: "put"
     }
-}
 
-export default SummaryApi
+};
+
+export default SummaryApi;
