@@ -5,18 +5,22 @@ meta {
 }
 
 post {
-  url: http://localhost:8800/api/user/login
+  url: http://localhost:8000/api/user/login
   body: json
   auth: bearer
 }
 
+headers {
+  Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3YjU5MDIxMmQzMmY2NWRkODU2NjQ3YyIsImlhdCI6MTczOTk2MjA1NywiZXhwIjoxNzQwNTY2ODU3fQ.14qW-FoVDuGwnWSdbpDk9KI_0vHCpOnBgcr1K8bpT7U
+}
+
 auth:bearer {
-  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3YWRlNjg1ZWMzZDMxNGYzOTMwNzhjMSIsImlhdCI6MTczOTQ1NDA1MCwiZXhwIjoxNzM5NDcyMDUwfQ.XzsFXwIDQAOQH1ReBeqCEbkdnGXSW8ZxBKvoZnhfh1Y
+  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3YjU5MDIxMmQzMmY2NWRkODU2NjQ3YyIsImlhdCI6MTczOTk2MDc2NCwiZXhwIjoxNzM5OTc4NzY0fQ.-tc4jFbWo1-Fkwd-j72vB_UuKDQ-nIu6hYSgpZ2rLtA
 }
 
 body:json {
   {
-    "email": "yonasatwork999@gmail.com",
-    "password": "yonas1234"
+    "email": "yonasbe999@gmail.com",
+    "password": "1234"
   }
 }

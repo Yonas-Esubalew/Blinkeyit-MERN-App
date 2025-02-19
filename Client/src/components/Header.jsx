@@ -5,6 +5,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaUser } from "react-icons/fa";
 import useMobile from "../hooks/useMobile";
 import { BsCart4 } from "react-icons/bs";
+import { useSelector } from "react-redux";
 
 function Header() {
   const [isMobile] = useMobile();
@@ -14,6 +15,8 @@ function Header() {
 
   const navigate = useNavigate();
 
+  const user = useSelector((state)=> state.user)
+  console.log("user from store", user)
   const redirectToLoginPage = () => {
     navigate("/login");
   };

@@ -4,20 +4,19 @@ meta {
   seq: 1
 }
 
-post {
-  url: http://localhost:8800/api/user/register
+get {
+  url: http://localhost:8080/api/user/user-details
   body: json
   auth: bearer
 }
 
 auth:bearer {
-  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3YWYxODdmMmVjMzUwZGQ2YjQ3NDU0ZSIsImlhdCI6MTczOTUyODM3OSwiZXhwIjoxNzM5NTQ2Mzc5fQ.VCDhjBafoaLup2sRhEufkOtQNu-JtoFpk8dVcw70ln0
+  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3YjVkYmIzZTBkZmM0ODcxNmUxNDE1ZSIsImlhdCI6MTczOTk3MTYyOSwiZXhwIjoxNzM5OTg5NjI5fQ.LH36oG1zafqdOHCadovVgV54fyuMXiTB5mmXrfHpBC4
 }
 
 body:json {
   {
-    "name": "Yonas Esuablew",
-    "email": "yonasbe999@gmail.com",
+    "email": "yonasatwork999@gmail.com",
     "password": "yonas1234"
   }
 }

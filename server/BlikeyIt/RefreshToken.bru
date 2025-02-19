@@ -5,11 +5,15 @@ meta {
 }
 
 post {
-  url: http://localhost:8800/api/user/refresh-token
+  url: http://localhost:8000/api/user/refresh-token
   body: none
   auth: bearer
 }
 
+headers {
+  Cookie: refreshToken =  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3YjU5MDIxMmQzMmY2NWRkODU2NjQ3YyIsImlhdCI6MTczOTk2MjA1NywiZXhwIjoxNzQwNTY2ODU3fQ.14qW-FoVDuGwnWSdbpDk9KI_0vHCpOnBgcr1K8bpT7U
+}
+
 auth:bearer {
-  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3YWY0YWQ0ZDBjMTZiZWY0NzczYjlhMSIsImlhdCI6MTczOTU0MjA0MywiZXhwIjoxNzM5NTYwMDQzfQ.zPwJhgAXD8xLiHgeQai3zvLZzZ50GiLTNRQXEptEeBg
+  token: 
 }

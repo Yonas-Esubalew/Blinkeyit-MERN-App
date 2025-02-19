@@ -43,6 +43,8 @@ const Login = () => {
 
       if (response.data.success) {
         toast.success(response.data.message);
+        localStorage.setItem("accesstoken",response.data.data.accesstoken)
+        localStorage.setItem("refreshtoken",response.data.data.refreshtoken)
         setData({
           email: "",
           password: "",

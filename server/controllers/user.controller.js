@@ -9,6 +9,7 @@ import uploadImageCloudinary from "../utils/uploadImageCloudinary.js";
 import generatedOtp from "../utils/generatedOtp.js";
 import forgotPasswordTemplate from "../utils/forgotPsswordTemplate.js";
 import jwt from "jsonwebtoken";
+
 //Register controller
 export async function registerUserController(req, res) {
   try {
@@ -422,6 +423,11 @@ export async function resetPassword(req, res) {
 //refresh token controller
 export async function refreshToken(req, res) {
   try {
+    const cookiesOption = {
+      httpOnly: true,
+      secure: true,
+      sameSite: "None",
+    };
     const refreshToken =
       req.cookies.refreshToken || req?.header?.authorization?.split(" ")[1]; // [bareer token]
 
@@ -449,13 +455,9 @@ export async function refreshToken(req, res) {
 
     const userId = verifyToken?._id;
     const newAccessToken = await generatedAccessToken(userId);
-    const cookiesOption = {
-      httpOnly: true,
-      secure: true,
-      sameSite: "None",
-    };
+    
 
-    res.cookie("accessToken", newAccessToken,newAccessToken);
+    res.cookie("accessToken", newAccessToken,cookiesOption);
 
     return res.json({
       message: "New Access Token Generated",
@@ -472,5 +474,26 @@ export async function refreshToken(req, res) {
       error: true,
       success: false,
     });
+  }
+}
+
+//  user details for 
+export async function userDetails(req,res){
+  try {
+    const userId = req.userId
+    const user = await UserModel.findById(userId).select(" -password -refresh_token")
+
+    return res.json({
+      message : "user details",
+      data: user,
+      error: false,
+      success: true
+    })
+  } catch (error) {
+    res.status(500).json({
+      message: "Something is wrong",
+      error: true,
+      success: false
+    })
   }
 }
