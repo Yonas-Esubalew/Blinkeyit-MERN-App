@@ -4,14 +4,14 @@ meta {
   seq: 1
 }
 
-get {
-  url: http://localhost:8080/api/user/user-details
+post {
+  url: http://localhost:8080/api/user/login
   body: json
   auth: bearer
 }
 
 auth:bearer {
-  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3YjVkYmIzZTBkZmM0ODcxNmUxNDE1ZSIsImlhdCI6MTczOTk3MTYyOSwiZXhwIjoxNzM5OTg5NjI5fQ.LH36oG1zafqdOHCadovVgV54fyuMXiTB5mmXrfHpBC4
+  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3YjVkYmIzZTBkZmM0ODcxNmUxNDE1ZSIsImlhdCI6MTc0MDAzOTEyNSwiZXhwIjoxNzQwMDU3MTI1fQ.VfVstj1B1_bmCL5NmYMyrGW1ykjSUXDidhkl2h4o89o
 }
 
 body:json {

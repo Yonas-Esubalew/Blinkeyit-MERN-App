@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import logo from "../assets/logo.png";
 import Search from "./Search";
 import { Link, useLocation, useNavigate } from "react-router-dom";
@@ -6,17 +6,20 @@ import { FaUser } from "react-icons/fa";
 import useMobile from "../hooks/useMobile";
 import { BsCart4 } from "react-icons/bs";
 import { useSelector } from "react-redux";
+import { GoTriangleDown } from "react-icons/go";
+import { GoTriangleUp } from "react-icons/go";
+import UserMenu from "./UserMenu";
 
 function Header() {
   const [isMobile] = useMobile();
-
   const location = useLocation();
   const isSearchPage = location.pathname === "/search";
-
   const navigate = useNavigate();
 
-  const user = useSelector((state)=> state.user)
-  console.log("user from store", user)
+  const user = useSelector((state) => state?.user);
+  console.log("user from store", user);
+  const [openUserMenu, setOpenUserMenu] = useState(false);
+
   const redirectToLoginPage = () => {
     navigate("/login");
   };
@@ -65,7 +68,31 @@ function Header() {
             </button>
             {/* desktop version */}
             <div className="hidden lg:flex items-center gap-10">
-              <button onClick={redirectToLoginPage} >Login</button>
+              {user?._id ? (
+                <div className="relative">
+                  <div
+                    onClick={() => setOpenUserMenu((preve) => !preve)}
+                    className="flex items-center gap-1 select-none cursor-pointer"
+                  >
+                    <p>Account</p>
+                    {openUserMenu ? (
+                      <GoTriangleUp size={25} />
+                    ) : (
+                      <GoTriangleDown size={25} />
+                    )}
+                  </div>
+                  {openUserMenu && (
+                    <div className="absolute right-0 top-16">
+                      <div className="bg-white  rounded p-4 min-w-52 lg:shadow-lg -mt-3 ">
+                        <UserMenu />
+                      </div>
+                    </div>
+                  )}
+                </div>
+              ) : (
+                <button onClick={redirectToLoginPage}>Login</button>
+              )}
+
               <button className="flex items-center gap-2 bg-se px-2 py-3  bg-green-800 hover:bg-green-700 text-white rounded">
                 {/* add to cart items */}
                 <div className="animate-bounce">
