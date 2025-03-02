@@ -1,11 +1,19 @@
 meta {
-  name: User register
+  name: User Register
   type: http
   seq: 2
 }
 
-get {
-  url: http://localhost:8800/api/user/register
-  body: none
+post {
+  url: http://localhost:8080/api/user/register
+  body: json
   auth: none
+}
+
+body:json {
+  {
+    "name": "Yonas Esubalew",
+    "email": "yonasbe999@gmail.com",
+    "password": "yonas1234"
+  }
 }

@@ -1,12 +1,12 @@
 meta {
-  name: Upload Avatar
+  name: UpdateUser Details
   type: http
-  seq: 5
+  seq: 6
 }
 
 put {
-  url: http://localhost:8080/api/user/upload-avatar
-  body: multipartForm
+  url: http://localhost:8080/api/user/update-user
+  body: json
   auth: bearer
 }
 
@@ -14,6 +14,8 @@ auth:bearer {
   token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3YzA3MjQ4ZGNkNWYwMWZkNjRhN2NmMSIsImlhdCI6MTc0MDY2NTQ5OSwiZXhwIjoxNzQwNjgzNDk5fQ.azb7gx7y4syK52UWyh0MrwHYUs8u_Eq6mJm6YBFB_UI
 }
 
-body:multipart-form {
-  avatar: @file(E:\My document\photo collecter\Project Image\450144.jpg)
+body:json {
+  {
+    "name": "Yonas Esubalew Abebe"
+  }
 }

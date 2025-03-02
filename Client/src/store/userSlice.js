@@ -10,7 +10,7 @@ const initialValue = {
   last_login_date: "",
   status: "",
   address_details: [],
-  shoping_cart: [],
+  shopping_cart: [],
   orderHistory: [],
   role: ""
 
@@ -32,7 +32,7 @@ const userSlice = createSlice({
       state.last_login_date = action.payload?.last_login_date;
       state.status = action.payload?.status;
       state.address_details = action.payload?.address_details;
-      state.shoping_cart = action.payload?.shoping_cart;
+      state.shopping_cart = action.payload?.shopping_cart;
       state.orderHistory = action.payload?.orderHistory;
       state.role = action.payload?.role;
     },
@@ -46,7 +46,7 @@ const userSlice = createSlice({
       state.last_login_date = ""
       state.status = ""
       state.address_details = []
-      state.shoping_cart = []
+      state.shopping_cart = []
       state.orderHistory = []
       state.role = ""
     }

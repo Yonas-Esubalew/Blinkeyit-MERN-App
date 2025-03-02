@@ -1,0 +1,22 @@
+meta {
+  name: User Login
+  type: http
+  seq: 3
+}
+
+post {
+  url: http://localhost:5000/api/user/login
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3YzQyODU4YzMxYTBiNjk2MzI0OWRkOCIsImlhdCI6MTc0MDkwOTAzOCwiZXhwIjoxNzQwOTI3MDM4fQ.5jOrwMZkxByrpY7DuaOAXjfDzc6r_y4KFrbgOyow3KU
+}
+
+body:json {
+  {
+    "email": "yonasbe999@gmail.com",
+    "password": "yonas12345"
+  }
+}

@@ -1,4 +1,4 @@
-export const baseURL = "http://localhost:8080";
+export const baseURL = "http://localhost:8000";
 
 const SummaryApi = {
   register: {
@@ -21,18 +21,18 @@ const SummaryApi = {
     url: "/api/user/reset-password",
     method: "put",
   },
-  refreshToken : {
+  refreshToken: {
     url: "/api/user/refresh-token",
-    methd: "post"
+    methd: "post",
   },
-  userDetails : {
-    url : "/api/user/user-details",
-    method: "get"
+  userDetails: {
+    url: "/api/user/user-details",
+    method: "get",
   },
   logout: {
     url: "/api/user/logout",
-    method: "get"
-  }
+    method: "get",
+  },
 };
 
 export default SummaryApi;

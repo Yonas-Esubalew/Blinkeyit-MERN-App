@@ -6,7 +6,7 @@ const Axios = axios.create({
   withCredentials: true,
 });
 
-//sending Accesstoken for the formula of
+//sending AccessToken for the formula of
 Axios.interceptors.request.use(
   async (config) => {
     const accessToken = localStorage.getItem("accesstoken");

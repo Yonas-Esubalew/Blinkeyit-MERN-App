@@ -1,0 +1,19 @@
+meta {
+  name: Refresh Token
+  type: http
+  seq: 10
+}
+
+post {
+  url: http://localhost:8080/api/user/refresh-token
+  body: none
+  auth: bearer
+}
+
+headers {
+  Cookie: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3YzQyODU4YzMxYTBiNjk2MzI0OWRkOCIsImlhdCI6MTc0MDkwOTAzOCwiZXhwIjoxNzQxNTEzODM4fQ.kpu7bMNRByM7iOEIuHj5RLEYQwj62fqZMikt3VXzHoM
+}
+
+auth:bearer {
+  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3YzA3MjQ4ZGNkNWYwMWZkNjRhN2NmMSIsImlhdCI6MTc0MDY2NTQ5OSwiZXhwIjoxNzQxMjcwMjk5fQ.aKSVUpx_QnPG0qwDjFmN1mD7NPJakQIXS6ugygwMDog
+}

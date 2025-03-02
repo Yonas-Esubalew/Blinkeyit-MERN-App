@@ -12,7 +12,7 @@ if(!process.env.MONGODB_URI){
 async function connectDB(){
     try {
         await mongoose.connect(process.env.MONGODB_URI)
-        console.log("Connect DB Successfully!")
+        console.log("Connect DB Successfully!👌")
     } catch (error) {
         console.log("MongoDB Connect error", error)
     }
