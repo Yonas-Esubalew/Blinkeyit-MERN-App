@@ -7,7 +7,7 @@ dotenv.config();
 import cookieParser from "cookie-parser";
 import morgan from "morgan";
 import helmet from "helmet";
-import userRouter from "./route/user.route.js";
+import userRouter from "./routes/user.route.js";
 
 const app = express();
 app.use(
