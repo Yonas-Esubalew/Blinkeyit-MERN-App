@@ -7,7 +7,7 @@ import generatedAccessToken from "../utils/generateAccessToken.js";
 import generatedRefreshToken from "../utils/generateRefreshToken.js";
 import uploadImageCloudinary from "../utils/uploadImageCloudinary.js";
 import generatedOtp from "../utils/generatedOtp.js";
-import forgotPasswordTemplate from "../utils/forgotPsswordTemplate.js";
+import forgotPasswordTemplate from "../utils/forgotPasswordTemplate.js";
 import jwt from "jsonwebtoken";
 
 //Register controller
@@ -44,7 +44,7 @@ export async function registerUserController(req, res) {
     const newUser = new UserModel(payload);
     const save = await newUser.save();
 
-    const VerifyEmailUrl = `${process.env.FRONTEND_URL}/verify-email?code=${save?._id}`
+    const VerifyEmailUrl = `${process.env.FRONTEND_URL}/verify-email?code=${save?._id}`;
 
     const verifyEmail = await sendEmail({
       sendTo: email,
@@ -354,10 +354,10 @@ export async function verifyForgotPasswordOtp(req, res) {
 
     //if OTP is not Expired
     //OTP == user.forgot_password_otp
-    const updateUser = await UserModel.findByIdAndUpdate(user?._id,{
-      forgot_password_otp : "",
-      forgot_password_expiry : ""
-  })
+    const updateUser = await UserModel.findByIdAndUpdate(user?._id, {
+      forgot_password_otp: "",
+      forgot_password_expiry: "",
+    });
     return res.json({
       message: "Verify OTP Successfully!",
       error: false,
@@ -455,19 +455,17 @@ export async function refreshToken(req, res) {
 
     const userId = verifyToken?._id;
     const newAccessToken = await generatedAccessToken(userId);
-    
 
-    res.cookie("accessToken", newAccessToken,cookiesOption);
+    res.cookie("accessToken", newAccessToken, cookiesOption);
 
     return res.json({
       message: "New Access Token Generated",
       error: false,
       success: true,
-      data : {
-        accessToken : newAccessToken
-      }
-    })
-
+      data: {
+        accessToken: newAccessToken,
+      },
+    });
   } catch (error) {
     return res.status(500).json({
       message: error.message || error,
@@ -477,23 +475,25 @@ export async function refreshToken(req, res) {
   }
 }
 
-//  user details for 
-export async function userDetails(req,res){
+//  user details for
+export async function userDetails(req, res) {
   try {
-    const userId = req.userId
-    const user = await UserModel.findById(userId).select(" -password -refresh_token")
+    const userId = req.userId;
+    const user = await UserModel.findById(userId).select(
+      " -password -refresh_token"
+    );
 
     return res.json({
-      message : "user details",
+      message: "user details",
       data: user,
       error: false,
-      success: true
-    })
+      success: true,
+    });
   } catch (error) {
     res.status(500).json({
       message: "Something is wrong",
       error: true,
-      success: false
-    })
+      success: false,
+    });
   }
 }
