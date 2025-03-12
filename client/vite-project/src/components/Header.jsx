@@ -24,6 +24,15 @@ const Header = () => {
   const handleCloseUserMenu = () => {
     setOpenUserMenu(false);
   };
+
+  const handleMobileUser = () => {
+    if(!user._id){
+      navigate("/login")
+      return
+    }
+    navigate("/user")
+
+  };
   return (
     <header className="h-24 lg:h-20 lg:shadow-md sticky top-0 flex items-center flex-col justify-center bg-white">
       {!(isSearchPage && isMobile) && (
@@ -54,7 +63,10 @@ const Header = () => {
           {/* login and my cart */}
           <div className="">
             {/* mobile version */}
-            <button className="text-neutral-600 lg:hidden">
+            <button
+              className="text-neutral-600 lg:hidden"
+              onClick={handleMobileUser}
+            >
               <FaUserCircle size={28} cursor={"pointer"} />
             </button>
 
@@ -73,10 +85,10 @@ const Header = () => {
                       <GoTriangleDown size={25} />
                     )}
                   </div>
-                  { openUserMenu && (
+                  {openUserMenu && (
                     <div className="absolute right-0 top-11 ">
                       <div className="bg-white rounded p-4 min-w-52 lg:shadow-lg">
-                        <UserMenu  close={handleCloseUserMenu}/>
+                        <UserMenu close={handleCloseUserMenu} />
                       </div>
                     </div>
                   )}
