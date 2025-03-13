@@ -1,11 +1,14 @@
+import uploadImageCloudinary from "../utils/uploadImageCloudinary.js";
+
 export async function uploadImageController(req, res) {
     try {
-
         const file = req.file
-
         console.log(file)
+
+        const uploadImage = await uploadImageCloudinary(file)
         return res.json({
-            message: "Operation successful",
+            message: "File Uploaded Successfully.",
+            data: uploadImage,
             error: false,
             success: true
         });

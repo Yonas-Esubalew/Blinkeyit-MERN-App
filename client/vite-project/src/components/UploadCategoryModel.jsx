@@ -27,8 +27,10 @@ const UploadCategoryModel = ({close}) => {
             return
         }
 
-        const uploadImage = await uploadImage
+        const Image = await uploadImage(file)
+        console.log(Image)
     }
+    
 
   return (
     <section className='fixed top-0 bottom-0  left-0 right-0 bg-neutral-800 opacity-60 p-4 flex items-center justify-center'>
@@ -56,13 +58,14 @@ const UploadCategoryModel = ({close}) => {
                         <p className='text-sm text-neutral-600'>No Image</p>
                     </div>
                     <label htmlFor='UploadCategoryImage'>
-                    <div disabled={!data.name} className={`
+                    <div className={`
                         ${!data.name  ? "bg-gray-400" : "bg-yellow-400"}
                         px-4 py-2 rounded
                         
                         `}>Upload Image</div>
                         <input 
-                        onChange={handleUploadCategory}
+                        disabled={!data.name}
+                        onChange={ handleUploadCategory}
                         id='UploadCategoryImage' className='hidden' type='file'/>
                     </label>
                     
