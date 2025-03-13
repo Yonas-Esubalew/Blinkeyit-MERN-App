@@ -8,6 +8,8 @@ import cookieParser from "cookie-parser";
 import morgan from "morgan";
 import helmet from "helmet";
 import userRouter from "./routes/user.route.js";
+import categoryRouter from "./routes/category.route.js";
+import uploadRouter from "./routes/upload.route.js";
 
 const app = express();
 app.use(
@@ -39,9 +41,9 @@ app.get("/", (req, res) => {
     message: `Server is run Running On ${PORT}`,
   });
 });
-
 app.use("/api/user", userRouter);
-
+app.use("/api/category", categoryRouter)
+app.use("/file", uploadRouter)
 const PORT = process.env.PORT || 5000;
 connectDB().then(() => {
   app.listen(PORT, () => {

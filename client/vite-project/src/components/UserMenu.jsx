@@ -39,11 +39,23 @@ const UserMenu = ({ close }) => {
   return (
     <div>
       <div className="font-semibold">My Account</div>
-      <div className="text-sm flex items-center gap-2"><span>{user.name || user.mobile}</span> <Link onClick={handleClose} to={"/dashboard/profile"} className="hover:text-yellow-400"><FiExternalLink/></Link></div>
+      <div className="text-sm flex items-center gap-2 border-r-2"><span>{user.name || user.mobile}</span> <Link onClick={handleClose} to={"/dashboard/profile"} className="hover:text-yellow-400"><FiExternalLink/></Link></div>
       <Divider />
-      <div className="text-sm grid gap-2">
+      <div className="text-sm grid gap-2 ">
         <Link onClick={handleClose} to={"/dashboard/myorders"} className="px-2 hover:bg-amber-100">
           My Orders
+        </Link>
+        <Link onClick={handleClose} to={"/dashboard/product"} className="px-2 hover:bg-amber-100">
+          Product
+        </Link>
+        <Link onClick={handleClose} to={"/dashboard/upload-product"} className="px-2 hover:bg-amber-100">
+          Upload Product
+        </Link>
+        <Link onClick={handleClose} to={"/dashboard/category"} className="px-2 hover:bg-amber-100">
+          Category
+        </Link>
+        <Link onClick={handleClose} to={"/dashboard/sub-category"} className="px-2 hover:bg-amber-100">
+          Sub Category
         </Link>
         <Link onClick={handleClose} to={"/dashboard/address"} className="px-2 hover:bg-amber-100">
           Save Address
